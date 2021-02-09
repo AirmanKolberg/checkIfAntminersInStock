@@ -3,6 +3,7 @@ import pyautogui
 from secrets import *
 from robot_variables import *
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from os import system
 
 
@@ -28,17 +29,17 @@ def notify_of_new_stock(subject_line, message_body):
     firefox = webdriver.Firefox()
     firefox.get(gmail_url)
     firefox.maximize_window()
+    sleep(3)
 
     firefox.find_element_by_id('identifierId').send_keys(gmail_account)
-    pyautogui.click(x=866, y=655)
+    firefox.find_element_by_id('identifierId').send_keys(Keys.RETURN)
     sleep(5)
 
     firefox.find_element_by_id('username').send_keys(username)
     firefox.find_element_by_id('password').send_keys(gmail_password)
-    pyautogui.click(x=639, y=507)
-    sleep(8)
-
-    pyautogui.click(x=84, y=201)
+    firefox.find_element_by_id('password').send_keys(Keys.RETURN)
+    sleep(5)
+    firefox.get('https://mail.google.com/mail/u/0/#inbox?compose=new')
     sleep(5)
 
     pyautogui.write(username)
