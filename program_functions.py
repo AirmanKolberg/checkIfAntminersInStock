@@ -2,6 +2,7 @@ from time import sleep
 import pyautogui
 from secrets import *
 from robot_variables import *
+from selenium import webdriver
 from os import system
 
 
@@ -10,6 +11,7 @@ def clear_screen():
 
 
 def check_in_stock():
+    firefox = webdriver.Firefox()
     firefox.get(bitmain_url)
     sleep(5)
     source = firefox.page_source
@@ -23,6 +25,7 @@ def check_in_stock():
 
 
 def notify_of_new_stock(subject_line, message_body):
+    firefox = webdriver.Firefox()
     firefox.get(gmail_url)
     firefox.maximize_window()
 
